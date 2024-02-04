@@ -35,10 +35,10 @@ export const ApartmentOptionsDropDown = () => {
       {({ open, close }) => (
         <>
           <Popover.Button
-            className={`${open ? "" : "text-opacity-90"}
+            className={`${open ? "" : "text-opacity-80"}
                 group self-center py-2 h-10 sm:h-12 rounded-md text-sm sm:text-base font-medium hover:text-opacity-100 focus:outline-none`}
           >
-            <div className={` inline-flex items-center `} role="button">
+            <div className={` inline-flex items-center text-opacity-80 `} role="button">
               <span>Apartments</span>
               <ChevronDownIcon
                 className={`${open ? "-rotate-180" : "text-opacity-70 "}
@@ -59,9 +59,9 @@ export const ApartmentOptionsDropDown = () => {
             <Popover.Panel className="absolute z-40 w-screen max-w-xs px-4 top-full transform -translate-x-1/2 left-1/2 sm:px-0">
               <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid grid-cols-1 gap-7 bg-white dark:bg-neutral-800 p-7 ">
-                  {apartmentOptions.map((item, index) => (
+                  {apartmentOptions.map(item => (
                     <Link
-                      key={index}
+                      key={item.name}
                       href={item.href}
                       onClick={() => close()}
                       className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 ${
