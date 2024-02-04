@@ -39,10 +39,9 @@ export const CurrencyOptions = (close: () => void) => {
     }, 
   ];
   
-  function changeCurrency(item: IHeaderCurrency, close: () => void) { 
-    if(item.name !== currentCurrency) {
-      dispatch(setCurrency(item.name));
-      
+  function changeCurrency(name: Currency, close: () => void) { 
+    if(name !== currentCurrency) {
+      dispatch(setCurrency(name)); 
     }
     close();
   }
@@ -52,7 +51,7 @@ export const CurrencyOptions = (close: () => void) => {
       {headerCurrencies.map((item, index) => (
         <div
           key={index}
-          onClick={() => changeCurrency(item, close)}
+          onClick={() => changeCurrency(item.name, close)}
           className={`flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 cursor-pointer ${
             item.active ? "bg-gray-100 dark:bg-gray-700" : "opacity-80"
           }`}
