@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Image, { StaticImageData } from "next/image";
+import { UserIcon } from "@heroicons/react/16/solid";
 
 export interface AvatarProps {
   containerClassName?: string;
@@ -23,16 +24,18 @@ export const Avatar: FC<AvatarProps> = ({
   
   return (
     <div
-      className={`wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner ${radius} ${sizeClass} ${containerClassName}`}>
-      {imgUrl && (
+      className={`wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner border-none bg-gray-300 dark:bg-gray-600  ${radius} ${sizeClass} ${containerClassName}`}>
+      {imgUrl ? (
         <Image
           className={`absolute inset-0 w-full h-full object-cover ${radius}`}
           src={imgUrl}
           alt={userName}
         />
-      )}
-      <span className="wil-avatar__name">{userName[0]}</span>
-
+      ) 
+        :
+          <UserIcon color="white" />
+      }
+      
       {hasChecked && (
         <span
           className={` bg-teal-500 rounded-full text-white text-xs flex items-center justify-center absolute  ${hasCheckedClass}`}

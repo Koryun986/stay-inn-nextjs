@@ -1,4 +1,5 @@
 import { ApartmentOptionsDropDown } from "./ApartmentOptionsDropDown"
+import AvatarDropdown from "./AvatarDropDown"
 import { ListNewPreopertyButton } from "./ListNewPropertyButton"
 import { LanguageCurrencyDropDown } from "./language-currency-dropdown/LanguageCurrencyDropDown"
 
@@ -8,6 +9,7 @@ export const HeaderNav = () => {
       <ApartmentOptionsDropDown /> 
       <LanguageCurrencyDropDown />
       <ListNewPreopertyButton />
+      <AvatarDropdown />
     </div>
   )
 }
