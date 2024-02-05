@@ -10,12 +10,16 @@ import { HeartSVG } from "@/svg/HeartSVG";
 import { LampSVG } from "@/svg/LampSVG";
 import { LifebuoySVG } from "@/svg/LifebuoySVG";
 import { LogoutSVG } from "@/svg/LogoutSVG";
+import { useAppSelector } from "@/redux/hooks";
+import { IUser } from "@/redux/slices/userSlice";
 
 interface Props {
   className?: string;
 }
 
 export default function AvatarDropdown({ className = "" }: Props) {
+  const user: IUser = useAppSelector(state => state.user)
+  
   return (
     <>
       <Popover className={`AvatarDropdown relative flex ${className}`}>
@@ -24,7 +28,7 @@ export default function AvatarDropdown({ className = "" }: Props) {
             <Popover.Button
               className={`self-center w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center`}
             >
-              <Avatar sizeClass="w-8 h-8 sm:w-9 sm:h-9" />
+              <Avatar sizeClass="w-8 h-8 sm:w-9 sm:h-9" imgUrl={user.avatar_url}/>
             </Popover.Button>
             <Transition
               as={Fragment}
@@ -42,8 +46,8 @@ export default function AvatarDropdown({ className = "" }: Props) {
                       <Avatar sizeClass="w-12 h-12" />
 
                       <div className="flex-grow">
-                        <h4 className="font-semibold">Eden Smith</h4>
-                        <p className="text-xs mt-0.5">Los Angeles, CA</p>
+                        <h4 className="font-semibold">{user.name}</h4>
+                        <p className="text-xs mt-0.5">{user.email}</p>
                       </div>
                     </div>
 
@@ -115,6 +119,9 @@ export default function AvatarDropdown({ className = "" }: Props) {
                       </div>
                     </Link>
 
+                    {
+                      user.email !== "user@anonymous.com"
+                      &&
                     <Link
                       href={"/#"}
                       className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -127,6 +134,7 @@ export default function AvatarDropdown({ className = "" }: Props) {
                         <p className="text-sm font-medium ">{"Log out"}</p>
                       </div>
                     </Link>
+                    }
                   </div>
                 </div>
               </Popover.Panel>
